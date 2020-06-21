@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "6FACz+PLtiF4npvgn4DRMtHdGWsuJtANzDDC7ugq/v3xvUqdY2avD05a0xPq0PX1X7Kt+Xhtax/G2s5s2JsQdQ==",
+  "dgSpecHash": "qUEhaoRVFo1QjPAuYNn8zK5bfnOqZtSxTbzxeS4+KDncvXr1iRDpDqunPBzKt25NaR//kC3mwtgw2FRmoXx+iQ==",
   "success": true,
-  "projectFilePath": "B:\\Projetos .NET\\Chess Game\\Chess Game\\Chess Game.csproj",
+  "projectFilePath": "B:\\Projetos .NET\\Chess-Game\\Chess Game\\Chess Game.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

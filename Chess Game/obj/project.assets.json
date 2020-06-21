@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "B:\\Projetos .NET\\Chess Game\\Chess Game\\Chess Game.csproj",
+      "projectUniqueName": "B:\\Projetos .NET\\Chess-Game\\Chess Game\\Chess Game.csproj",
       "projectName": "Chess Game",
-      "projectPath": "B:\\Projetos .NET\\Chess Game\\Chess Game\\Chess Game.csproj",
+      "projectPath": "B:\\Projetos .NET\\Chess-Game\\Chess Game\\Chess Game.csproj",
       "packagesPath": "C:\\Users\\lucas\\.nuget\\packages\\",
-      "outputPath": "B:\\Projetos .NET\\Chess Game\\Chess Game\\obj\\",
+      "outputPath": "B:\\Projetos .NET\\Chess-Game\\Chess Game\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\lucas\\AppData\\Roaming\\NuGet\\NuGet.Config",
