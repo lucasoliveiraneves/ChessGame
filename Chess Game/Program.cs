@@ -13,9 +13,11 @@ namespace Chess_Game
             {
                 Board board = new Board(8, 8);
 
-                board.addPieces(new Tower(board, Collor.Black), new Position(0, 9));
+                board.addPieces(new Tower(board, Collor.Black), new Position(0, 0));
                 board.addPieces(new Tower(board, Collor.Black), new Position(1, 3));
                 board.addPieces(new King(board, Collor.Black), new Position(2, 4));
+
+                board.addPieces(new King(board, Collor.White), new Position(3, 5));
 
 
                 Screen.printBoard(board);
