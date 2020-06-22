@@ -1,5 +1,6 @@
 ﻿using board;
 using Chess;
+using Chess_Game.board;
 using System;
 
 namespace Chess_Game
@@ -8,15 +9,23 @@ namespace Chess_Game
     {
         static void Main(string[] args)
         {
-            Board board = new Board(8, 8);
+            try
+            {
+                Board board = new Board(8, 8);
 
-            board.addPieces(new Tower(board, Collor.Black), new Position(0, 0));
-            board.addPieces(new Tower(board, Collor.Black), new Position(1, 3));
-            board.addPieces(new King(board, Collor.Black), new Position(2, 4));
+                board.addPieces(new Tower(board, Collor.Black), new Position(0, 9));
+                board.addPieces(new Tower(board, Collor.Black), new Position(1, 3));
+                board.addPieces(new King(board, Collor.Black), new Position(2, 4));
 
 
-            Screen.printBoard(board);
-            Console.WriteLine();
+                Screen.printBoard(board);
+               
+            }
+            catch(BoardException e)
+            {
+                Console.Write(e.Message);
+            }
+            Console.ReadLine();
         }
     }
 }
