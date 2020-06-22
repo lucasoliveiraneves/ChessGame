@@ -2,11 +2,53 @@
 using Chess;
 using Microsoft.VisualBasic;
 using System;
+using System.Collections.Generic;
 
 namespace Chess_Game
 {
     class Screen
     {
+        public static void printMatch(ChessMatch match)
+        {
+            printBoard(match.tab);
+            Console.WriteLine();
+            printPiecesCaptured(match);
+            Console.WriteLine();
+            Console.WriteLine("Turn:" + match.turn);
+            Console.WriteLine();
+            Console.WriteLine("Waiting for the move:" + " " + match.currentPlayer);
+            if (match.check)
+            {
+                Console.WriteLine("check!");
+            }
+            Console.WriteLine();
+        }
+        public static void printPiecesCaptured(ChessMatch match)
+        {
+            
+            Console.WriteLine("Pieces Captured:");
+            Console.WriteLine();
+            Console.Write("White:");
+            
+            printSet(match.piecesCaptured(Collor.White));
+            Console.WriteLine();
+            Console.Write("Blacks:");
+            ConsoleColor aux = Console.ForegroundColor;
+            Console.ForegroundColor = ConsoleColor.Red;
+            printSet(match.piecesCaptured(Collor.Black));
+            Console.ForegroundColor = aux;
+            Console.WriteLine();
+        } 
+        public static void printSet( HashSet<Piece> sets)
+        {
+            Console.Write(" [");
+            foreach (Piece x in sets)
+            {
+                Console.Write(x + " ");
+            }
+            Console.Write(" ]");
+        }
+
         public static void printBoard(Board board)
         {
             for (int i = 0; i < board.lines; i++)
@@ -14,7 +56,7 @@ namespace Chess_Game
                 Console.Write(8 - i + " ");
                 for (int j = 0; j < board.coluns; j++)
                 {
-                    printPiece(board.piece(i, j));
+                    PrintPiece(board.piece(i, j));
 
                 }
             
@@ -42,7 +84,7 @@ namespace Chess_Game
                     }
 
 
-                    printPiece(board.piece(i, j));
+                    PrintPiece(board.piece(i, j));
                     Console.BackgroundColor = origBackground;
 
 
@@ -62,7 +104,7 @@ namespace Chess_Game
         }
 
 
-        public static void printPiece(Piece piece)
+        public static void PrintPiece(Piece piece)
         {
             if( piece == null)
             {

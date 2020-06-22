@@ -20,10 +20,8 @@ namespace Chess_Game
                     try
                     {
                         Console.Clear();
-                        Screen.printBoard(Match.tab);
-                        Console.WriteLine();
-                        Console.WriteLine("Turno:" + Match.turn);
-                        Console.WriteLine("Aguardando a jogada:" + " " + Match.currentPlayer);
+                        Screen.printMatch(Match);
+                        
 
                         Console.WriteLine();
 
@@ -39,6 +37,7 @@ namespace Chess_Game
                         Console.WriteLine();
                         Console.Write("Destinity:");
                         Position dest = Screen.readChessPosition().toPosition();
+                        Match.validateDestinityPosition(orig, dest);
 
                         Match.makeMoves(orig, dest);
                     }

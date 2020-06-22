@@ -34,10 +34,19 @@ namespace board
             return false;   
         }
 
+        public bool canMoveFor(Position pos)
+        {
+            return possiMov()[pos.line, pos.column];
+        }
         public abstract bool[,] possiMov();
         public void incrementAmountMov()
         {
             amountOfMov++;
         }
+        public void decrementAmountMov()
+        {
+            amountOfMov--;
+        }
+
     }
 }
