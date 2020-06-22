@@ -2,6 +2,7 @@
 using Chess;
 using Chess_Game.board;
 using System;
+using System.Reflection.PortableExecutable;
 
 namespace Chess_Game
 {
@@ -11,16 +12,24 @@ namespace Chess_Game
         {
             try
             {
-                Board board = new Board(8, 8);
+                ChessMatch Match = new ChessMatch();
 
-                board.addPieces(new Tower(board, Collor.Black), new Position(0, 0));
-                board.addPieces(new Tower(board, Collor.Black), new Position(1, 3));
-                board.addPieces(new King(board, Collor.Black), new Position(2, 4));
+                while (!Match.Finish)
+                {
+                    Console.Clear();
+                    Screen.printBoard(Match.tab);
 
-                board.addPieces(new King(board, Collor.White), new Position(3, 5));
+                    Console.WriteLine();
 
+                    Console.Write("Origim:");
+                    Position orig = Screen.readChessPosition().toPosition();
+                    Console.Write("Destinity:");
+                    Position dest = Screen.readChessPosition().toPosition();
 
-                Screen.printBoard(board);
+                    Match.exMovi(orig, dest);
+
+                }
+               
                
             }
             catch(BoardException e)

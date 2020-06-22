@@ -18,5 +18,9 @@ namespace board
             this.board = board;
             this.amountOfMov = 0;
         }
+        public void incrementAmountMov()
+        {
+            amountOfMov++;
+        }
     }
 }
