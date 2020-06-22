@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿
 
-namespace Chess_Game.Board
+namespace board
 {
-    class Collor
+    enum Collor 
     {
+        Black,
+        White
     }
 }

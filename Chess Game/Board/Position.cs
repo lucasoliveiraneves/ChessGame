@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Board
+﻿
+namespace board
 {
     class Position
     {
