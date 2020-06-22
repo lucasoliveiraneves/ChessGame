@@ -11,9 +11,9 @@ namespace board
 
         public Board board { get; set; }
 
-        public Piece(Position position, Collor collor, Board board)
+        public Piece( Collor collor, Board board)
         {
-            this.position = position;
+            this.position = null;
             this.collor = collor;
             this.board = board;
             this.amountOfMov = 0;

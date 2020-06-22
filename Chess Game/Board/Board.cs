@@ -19,5 +19,11 @@ namespace board
         {
             return pieces[line, colun];
         }
+        public void addPieces(Piece p , Position pos)
+        {
+            pieces[pos.line, pos.column] = p;
+
+            p.position = pos;
+        }
     }
 }
