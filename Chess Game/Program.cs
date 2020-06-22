@@ -23,6 +23,13 @@ namespace Chess_Game
 
                     Console.Write("Origim:");
                     Position orig = Screen.readChessPosition().toPosition();
+
+                    bool[,] possPosition = Match.tab.piece(orig).possiMov();
+
+                    Console.Clear();
+                    Screen.printBoard(Match.tab,possPosition);
+
+                    Console.WriteLine();
                     Console.Write("Destinity:");
                     Position dest = Screen.readChessPosition().toPosition();
 

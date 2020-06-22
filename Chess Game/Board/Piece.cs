@@ -3,7 +3,7 @@ using System.Reflection.Metadata.Ecma335;
 
 namespace board
 {
-    class Piece
+     abstract class Piece
     {
         public Position position { get; set; }
         public Collor collor { get; protected set; }
@@ -18,6 +18,8 @@ namespace board
             this.board = board;
             this.amountOfMov = 0;
         }
+
+        public abstract bool[,] possiMov();
         public void incrementAmountMov()
         {
             amountOfMov++;
