@@ -18,6 +18,21 @@ namespace board
             this.board = board;
             this.amountOfMov = 0;
         }
+        public bool existPossMove()
+        {
+            bool[,] mat = possiMov();
+            for (int i = 0; i < board.lines; i++)
+            {
+                for(int j=0; j< board.coluns; j++)
+                {
+                    if (mat[i, j])
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;   
+        }
 
         public abstract bool[,] possiMov();
         public void incrementAmountMov()

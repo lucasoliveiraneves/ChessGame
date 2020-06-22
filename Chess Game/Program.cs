@@ -2,6 +2,7 @@
 using Chess;
 using Chess_Game.board;
 using System;
+using System.Linq.Expressions;
 using System.Reflection.PortableExecutable;
 
 namespace Chess_Game
@@ -16,26 +17,40 @@ namespace Chess_Game
 
                 while (!Match.Finish)
                 {
-                    Console.Clear();
-                    Screen.printBoard(Match.tab);
+                    try
+                    {
+                        Console.Clear();
+                        Screen.printBoard(Match.tab);
+                        Console.WriteLine();
+                        Console.WriteLine("Turno:" + Match.turn);
+                        Console.WriteLine("Aguardando a jogada:" + " " + Match.currentPlayer);
 
-                    Console.WriteLine();
+                        Console.WriteLine();
 
-                    Console.Write("Origim:");
-                    Position orig = Screen.readChessPosition().toPosition();
+                        Console.Write("Origim:");
+                        Position orig = Screen.readChessPosition().toPosition();
+                        Match.validateOriginPosition(orig);
 
-                    bool[,] possPosition = Match.tab.piece(orig).possiMov();
+                        bool[,] possPosition = Match.tab.piece(orig).possiMov();
 
-                    Console.Clear();
-                    Screen.printBoard(Match.tab,possPosition);
+                        Console.Clear();
+                        Screen.printBoard(Match.tab, possPosition);
 
-                    Console.WriteLine();
-                    Console.Write("Destinity:");
-                    Position dest = Screen.readChessPosition().toPosition();
+                        Console.WriteLine();
+                        Console.Write("Destinity:");
+                        Position dest = Screen.readChessPosition().toPosition();
 
-                    Match.exMovi(orig, dest);
-
+                        Match.makeMoves(orig, dest);
+                    }
+                     catch(BoardException e)
+                    {
+                        Console.WriteLine(e.Message);
+                        Console.ReadLine();
+                    }
                 }
+                
+
+                
                
                
             }

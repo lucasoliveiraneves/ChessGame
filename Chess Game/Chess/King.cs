@@ -1,6 +1,5 @@
 ﻿using board;
-using Microsoft.VisualBasic;
-using System.ComponentModel.DataAnnotations.Schema;
+
 
 namespace Chess
 {

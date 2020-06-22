@@ -9,8 +9,6 @@ namespace Chess_Game
     {
         public static void printBoard(Board board)
         {
-
-
             for (int i = 0; i < board.lines; i++)
             {
                 Console.Write(8 - i + " ");
@@ -23,10 +21,6 @@ namespace Chess_Game
                 Console.WriteLine();
             }
             Console.WriteLine("  a b c d e f g h");
-
-          
-
-
         }
         public static void printBoard(Board board, bool[,] possPosition)
         {
