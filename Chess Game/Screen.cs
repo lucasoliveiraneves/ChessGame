@@ -35,8 +35,11 @@ namespace Chess_Game
             Console.WriteLine("Pieces Captured:");
             Console.WriteLine();
             Console.Write("White:");
-            
+
+            ConsoleColor aux1 = Console.ForegroundColor;
+            Console.ForegroundColor = ConsoleColor.Yellow;
             printSet(match.piecesCaptured(Collor.White));
+            Console.ForegroundColor = aux1;
             Console.WriteLine();
             Console.Write("Blacks:");
             ConsoleColor aux = Console.ForegroundColor;
@@ -119,7 +122,10 @@ namespace Chess_Game
             else {
                 if (piece.collor == Collor.White)
                 {
+                    ConsoleColor aux = Console.ForegroundColor;
+                    Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.Write(piece);
+                    Console.ForegroundColor = aux;
                 }
                 else
                 {

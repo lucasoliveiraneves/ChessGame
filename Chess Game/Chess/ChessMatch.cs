@@ -2,6 +2,7 @@
 
 using board;
 using Chess_Game.board;
+using Chess_Game.Chess;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -137,19 +138,39 @@ namespace Chess
         {
 
             //White
-            addNewPiece('c', 1, new Tower(tab, Collor.White));
-            addNewPiece('c', 2, new Tower(tab, Collor.White));
-            addNewPiece('d', 2, new Tower(tab, Collor.White));
-            addNewPiece('e', 2, new Tower(tab, Collor.White));
-            addNewPiece('e', 1, new Tower(tab, Collor.White));
-            addNewPiece('d', 1, new King(tab, Collor.White));
+            addNewPiece('a', 1, new Tower(tab, Collor.White));
+            addNewPiece('b', 1, new Knight(tab, Collor.White));
+            addNewPiece('c', 1, new Bishop(tab, Collor.White));
+            addNewPiece('d', 1, new Queen(tab, Collor.White));
+            addNewPiece('e', 1, new King(tab, Collor.White));
+            addNewPiece('f', 1, new Bishop(tab, Collor.White));
+            addNewPiece('g', 1, new Knight(tab, Collor.White));
+            addNewPiece('h', 1, new Tower(tab, Collor.White));
+            addNewPiece('a', 2, new Pawn(tab, Collor.White));
+            addNewPiece('b', 2, new Pawn(tab, Collor.White));
+            addNewPiece('c', 2, new Pawn(tab, Collor.White));
+            addNewPiece('d', 2, new Pawn(tab, Collor.White));
+            addNewPiece('e', 2, new Pawn(tab, Collor.White));
+            addNewPiece('f', 2, new Pawn(tab, Collor.White));
+            addNewPiece('g', 2, new Pawn(tab, Collor.White));
+            addNewPiece('h', 2, new Pawn(tab, Collor.White));
             //Black
-            addNewPiece('c', 7, new Tower(tab, Collor.Black));
-            addNewPiece('c', 8, new Tower(tab, Collor.Black));
-            addNewPiece('d', 7, new Tower(tab, Collor.Black));
-            addNewPiece('e', 7, new Tower(tab, Collor.Black));
-            addNewPiece('e', 8, new Tower(tab, Collor.Black));
-            addNewPiece('d', 8, new King(tab, Collor.Black));
+            addNewPiece('a', 8, new Tower(tab, Collor.Black));
+            addNewPiece('b', 8, new Knight(tab, Collor.Black));
+            addNewPiece('c', 8, new Bishop(tab, Collor.Black));
+            addNewPiece('d', 8, new Queen(tab, Collor.Black));
+            addNewPiece('e', 8, new King(tab, Collor.Black));
+            addNewPiece('f', 8, new Bishop(tab, Collor.Black));
+            addNewPiece('g', 8, new Knight(tab, Collor.Black));
+            addNewPiece('h', 8, new Tower(tab, Collor.Black));
+            addNewPiece('a', 7, new Pawn(tab, Collor.Black));
+            addNewPiece('b', 7, new Pawn(tab, Collor.Black));
+            addNewPiece('c', 7, new Pawn(tab, Collor.Black));
+            addNewPiece('d', 7, new Pawn(tab, Collor.Black));
+            addNewPiece('e', 7, new Pawn(tab, Collor.Black));
+            addNewPiece('f', 7, new Pawn(tab, Collor.Black));
+            addNewPiece('g', 7, new Pawn(tab, Collor.Black));
+            addNewPiece('h', 7, new Pawn(tab, Collor.Black));
 
 
         }
