@@ -21,7 +21,7 @@ namespace Chess_Game
                     {
                         Console.Clear();
                         Screen.printMatch(Match);
-                        
+
 
                         Console.WriteLine();
 
@@ -41,19 +41,20 @@ namespace Chess_Game
 
                         Match.makeMoves(orig, dest);
                     }
-                     catch(BoardException e)
+                    catch (BoardException e)
                     {
                         Console.WriteLine(e.Message);
                         Console.ReadLine();
                     }
                 }
-                
 
-                
-               
-               
+                Console.Clear();
+                Screen.printMatch(Match);
+
+
+
             }
-            catch(BoardException e)
+            catch (BoardException e)
             {
                 Console.Write(e.Message);
             }

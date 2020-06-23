@@ -16,12 +16,18 @@ namespace Chess_Game
             Console.WriteLine();
             Console.WriteLine("Turn:" + match.turn);
             Console.WriteLine();
-            Console.WriteLine("Waiting for the move:" + " " + match.currentPlayer);
-            if (match.check)
+            if (!match.Finish)
             {
-                Console.WriteLine("check!");
+                Console.WriteLine("Waiting for the move:" + " " + match.currentPlayer);
+                if (match.check)
+                {
+                    Console.WriteLine("check!");
+                }
             }
-            Console.WriteLine();
+            else { 
+                Console.WriteLine("Checkmate!");
+                Console.WriteLine("The winner :" + match.currentPlayer);
+            }
         }
         public static void printPiecesCaptured(ChessMatch match)
         {

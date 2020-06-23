@@ -94,6 +94,39 @@ namespace Chess
             }
             return false;
         }
+
+        public bool testCheck(Collor collor)
+        {
+            if (!kingCheck(collor))
+            {
+                return false;
+            }
+            foreach (Piece x in pieceGame(collor))
+            {
+                bool[,] mat = x.possiMov();
+                for(int i = 0; i< tab.lines; i++)
+                {
+                    for(int j = 0; j < tab.coluns; j++)
+                    {
+                        if (mat[i, j])
+                        {
+                            Position orig = x.position;
+                            Position desti = new Position(i, j);
+                            Piece capturedPiece = exMovi(x.position, desti);
+                            bool testCheck = kingCheck(collor);
+                            cancelMov(orig, desti, capturedPiece);
+                            if (!testCheck)
+                            {
+                                return false;
+                            }
+                        }
+                    }
+                }
+            }
+            return true;
+
+        }
+
         public void addNewPiece(char column, int line , Piece piece)
         {
             tab.addPieces(piece, new ChessPosition(column, line).toPosition());
@@ -161,9 +194,15 @@ namespace Chess
             {
                 check = false;
             }
-
-            turn++;
-            changePlayer();
+            if (testCheck(opponent(currentPlayer)))
+            {
+                Finish = true;
+            }
+            else
+            {
+                turn++;
+                changePlayer();
+            }
         }
        public void validateOriginPosition(Position pos)
         {
