@@ -281,6 +281,21 @@ namespace Chess
                 cancelMov(orig, destinity, pieceCaptured);
                 throw new BoardException("You can't put the King in check ");
             }
+
+            Piece p = tab.piece(destinity);
+
+            // Promotion
+            if (p is Pawn)
+            {
+                if ((p.collor == Collor.White && destinity.line == 0) || (p.collor == Collor.Black && destinity.line == 7))
+                {
+                    p = tab.removePiece(destinity);
+                    pieces.Remove(p);
+                    Piece queen = new Queen(tab, p.collor);
+                    tab.addPieces(queen, destinity);
+                    pieces.Add(queen);
+                }
+            }
             if (kingCheck(opponent(currentPlayer)))
             {
                 check = true;
@@ -298,7 +313,7 @@ namespace Chess
                 turn++;
                 changePlayer();
             }
-            Piece p = tab.piece(destinity);
+            
 
             // en passant
             if (p is Pawn && (destinity.line == orig.line - 2 || destinity.line == orig.line + 2))
