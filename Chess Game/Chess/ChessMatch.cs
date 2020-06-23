@@ -142,7 +142,7 @@ namespace Chess
             addNewPiece('b', 1, new Knight(tab, Collor.White));
             addNewPiece('c', 1, new Bishop(tab, Collor.White));
             addNewPiece('d', 1, new Queen(tab, Collor.White));
-            addNewPiece('e', 1, new King(tab, Collor.White));
+            addNewPiece('e', 1, new King(tab, Collor.White,this));
             addNewPiece('f', 1, new Bishop(tab, Collor.White));
             addNewPiece('g', 1, new Knight(tab, Collor.White));
             addNewPiece('h', 1, new Tower(tab, Collor.White));
@@ -159,7 +159,7 @@ namespace Chess
             addNewPiece('b', 8, new Knight(tab, Collor.Black));
             addNewPiece('c', 8, new Bishop(tab, Collor.Black));
             addNewPiece('d', 8, new Queen(tab, Collor.Black));
-            addNewPiece('e', 8, new King(tab, Collor.Black));
+            addNewPiece('e', 8, new King(tab, Collor.Black,this));
             addNewPiece('f', 8, new Bishop(tab, Collor.Black));
             addNewPiece('g', 8, new Knight(tab, Collor.Black));
             addNewPiece('h', 8, new Tower(tab, Collor.Black));
@@ -185,6 +185,24 @@ namespace Chess
             {
                 capturated.Add(pieceCaptured);
             }
+            //small rock
+            if(p is King && destinity.column == orig.column + 2)
+            {
+                Position origT = new Position(orig.line, orig.column + 3);
+                Position destT = new Position(orig.line, orig.column + 1);
+                Piece T = tab.removePiece(origT);
+                T.incrementAmountMov();
+                tab.addPieces(T, destT);
+            }
+            //big rock
+            if (p is King && destinity.column == orig.column - 2)
+            { 
+                Position origT = new Position(orig.line, orig.column - 4);
+                Position destT = new Position(orig.line, orig.column - 1);
+                Piece T = tab.removePiece(origT);
+                T.incrementAmountMov();
+                tab.addPieces(T, destT);
+            }
 
             return pieceCaptured;
         }
@@ -198,6 +216,24 @@ namespace Chess
                 capturated.Remove(pieceCaptured);
             }
             tab.addPieces(p, orig);
+            //small rock
+            if (p is King && destinity.column == orig.column + 2)
+            {
+                Position origT = new Position(orig.line, orig.column + 3);
+                Position destT = new Position(orig.line, orig.column + 1);
+                Piece T = tab.removePiece(destT);
+                T.incrementAmountMov();
+                tab.addPieces(T, origT);
+            }
+            //big rock
+            if (p is King && destinity.column == orig.column - 2)
+            {
+                Position origT = new Position(orig.line, orig.column - 4);
+                Position destT = new Position(orig.line, orig.column - 1);
+                Piece T = tab.removePiece(destT);
+                T.incrementAmountMov();
+                tab.addPieces(T, origT);
+            }
         }
         public void makeMoves(Position orig,Position destinity)
         {
