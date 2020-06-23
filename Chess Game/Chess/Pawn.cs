@@ -1,13 +1,14 @@
 ﻿using board;
-
+using Chess;
 
 namespace Chess_Game.Chess
 {
     class Pawn : Piece
     {
-        public Pawn(Board board, Collor collor) : base(collor, board)
+        private ChessMatch match;
+        public Pawn(Board board, Collor collor, ChessMatch match) : base(collor, board)
         {
-
+            this.match = match;
         }
 
         public override string ToString()
@@ -24,7 +25,7 @@ namespace Chess_Game.Chess
             return board.piece(pos) == null;
 
         }
-      
+
         public override bool[,] possiMov()
         {
             bool[,] mat = new bool[board.lines, board.coluns];
@@ -53,6 +54,20 @@ namespace Chess_Game.Chess
                 {
                     mat[pos.line, pos.column] = true;
                 }
+                //  en passant
+                if (position.line == 3)
+                {
+                    Position left = new Position(position.line, position.column - 1);
+                    if (board.positionTrue(left) && existsEnemy(left) && board.piece(left) == match.vEnPassant)
+                    {
+                        mat[left.line - 1, left.column] = true;
+                    }
+                    Position right = new Position(position.line, position.column + 1);
+                    if (board.positionTrue(right) && existsEnemy(right) && board.piece(right) == match.vEnPassant)
+                    {
+                        mat[right.line - 1, right.column] = true;
+                    }
+                }
             }
             else
             {
@@ -76,10 +91,25 @@ namespace Chess_Game.Chess
                 {
                     mat[pos.line, pos.column] = true;
                 }
+                //  en passant
+                if (position.line == 4)
+                {
+                    Position left = new Position(position.line, position.column + 1);
+                    if (board.positionTrue(left) && existsEnemy(left) && board.piece(left) == match.vEnPassant)
+                    {
+                        mat[left.line + 1, left.column] = true;
+                    }
+                    Position right = new Position(position.line, position.column - 1);
+                    if (board.positionTrue(right) && existsEnemy(right) && board.piece(right) == match.vEnPassant)
+                    {
+                        mat[right.line + 1, right.column] = true;
+                    }
+                }
+
 
             }
             return mat;
 
-            }
         }
+    }
 }

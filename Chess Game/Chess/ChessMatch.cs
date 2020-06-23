@@ -18,6 +18,7 @@ namespace Chess
         private HashSet<Piece> pieces;
         private HashSet<Piece> capturated;
         public bool check { get; private set;}
+        public Piece vEnPassant { get; private set; }
         public ChessMatch()
         {
             tab = new Board(8, 8);
@@ -27,6 +28,7 @@ namespace Chess
             pieces = new HashSet<Piece>();
             capturated = new HashSet<Piece>();
             check = false;
+            vEnPassant = null;
             addPieces();
 
         }
@@ -146,14 +148,14 @@ namespace Chess
             addNewPiece('f', 1, new Bishop(tab, Collor.White));
             addNewPiece('g', 1, new Knight(tab, Collor.White));
             addNewPiece('h', 1, new Tower(tab, Collor.White));
-            addNewPiece('a', 2, new Pawn(tab, Collor.White));
-            addNewPiece('b', 2, new Pawn(tab, Collor.White));
-            addNewPiece('c', 2, new Pawn(tab, Collor.White));
-            addNewPiece('d', 2, new Pawn(tab, Collor.White));
-            addNewPiece('e', 2, new Pawn(tab, Collor.White));
-            addNewPiece('f', 2, new Pawn(tab, Collor.White));
-            addNewPiece('g', 2, new Pawn(tab, Collor.White));
-            addNewPiece('h', 2, new Pawn(tab, Collor.White));
+            addNewPiece('a', 2, new Pawn(tab, Collor.White,this));
+            addNewPiece('b', 2, new Pawn(tab, Collor.White,this));
+            addNewPiece('c', 2, new Pawn(tab, Collor.White,this));
+            addNewPiece('d', 2, new Pawn(tab, Collor.White,this));
+            addNewPiece('e', 2, new Pawn(tab, Collor.White,this));
+            addNewPiece('f', 2, new Pawn(tab, Collor.White,this));
+            addNewPiece('g', 2, new Pawn(tab, Collor.White,this));
+            addNewPiece('h', 2, new Pawn(tab, Collor.White,this));
             //Black
             addNewPiece('a', 8, new Tower(tab, Collor.Black));
             addNewPiece('b', 8, new Knight(tab, Collor.Black));
@@ -163,14 +165,14 @@ namespace Chess
             addNewPiece('f', 8, new Bishop(tab, Collor.Black));
             addNewPiece('g', 8, new Knight(tab, Collor.Black));
             addNewPiece('h', 8, new Tower(tab, Collor.Black));
-            addNewPiece('a', 7, new Pawn(tab, Collor.Black));
-            addNewPiece('b', 7, new Pawn(tab, Collor.Black));
-            addNewPiece('c', 7, new Pawn(tab, Collor.Black));
-            addNewPiece('d', 7, new Pawn(tab, Collor.Black));
-            addNewPiece('e', 7, new Pawn(tab, Collor.Black));
-            addNewPiece('f', 7, new Pawn(tab, Collor.Black));
-            addNewPiece('g', 7, new Pawn(tab, Collor.Black));
-            addNewPiece('h', 7, new Pawn(tab, Collor.Black));
+            addNewPiece('a', 7, new Pawn(tab, Collor.Black,this));
+            addNewPiece('b', 7, new Pawn(tab, Collor.Black,this));
+            addNewPiece('c', 7, new Pawn(tab, Collor.Black,this));
+            addNewPiece('d', 7, new Pawn(tab, Collor.Black,this));
+            addNewPiece('e', 7, new Pawn(tab, Collor.Black,this));
+            addNewPiece('f', 7, new Pawn(tab, Collor.Black,this));
+            addNewPiece('g', 7, new Pawn(tab, Collor.Black,this));
+            addNewPiece('h', 7, new Pawn(tab, Collor.Black,this));
 
 
         }
@@ -203,6 +205,24 @@ namespace Chess
                 T.incrementAmountMov();
                 tab.addPieces(T, destT);
             }
+            //  en passant
+            if (p is Pawn)
+            {
+                if (orig.column != destinity.column && pieceCaptured == null)
+                {
+                    Position posP;
+                    if (p.collor == Collor.White)
+                    {
+                        posP = new Position(destinity.line + 1, destinity.column);
+                    }
+                    else
+                    {
+                        posP = new Position(destinity.line - 1, destinity.column);
+                    }
+                    pieceCaptured = tab.removePiece(posP);
+                    capturated.Add(pieceCaptured);
+                }
+            }
 
             return pieceCaptured;
         }
@@ -234,6 +254,24 @@ namespace Chess
                 T.incrementAmountMov();
                 tab.addPieces(T, origT);
             }
+            //  en passant
+            if (p is Pawn)
+            {
+                if (orig.column != destinity.column && pieceCaptured == vEnPassant)
+                {
+                    Piece pawn = tab.removePiece(destinity);
+                    Position posP;
+                    if (p.collor == Collor.White)
+                    {
+                        posP = new Position(3, destinity.column);
+                    }
+                    else
+                    {
+                        posP = new Position(4, destinity.column);
+                    }
+                    tab.addPieces(pawn, posP);
+                }
+            }
         }
         public void makeMoves(Position orig,Position destinity)
         {
@@ -259,6 +297,17 @@ namespace Chess
             {
                 turn++;
                 changePlayer();
+            }
+            Piece p = tab.piece(destinity);
+
+            // en passant
+            if (p is Pawn && (destinity.line == orig.line - 2 || destinity.line == orig.line + 2))
+            {
+                vEnPassant = p;
+            }
+            else
+            {
+                vEnPassant = null;
             }
         }
        public void validateOriginPosition(Position pos)
